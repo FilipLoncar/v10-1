@@ -60,18 +60,18 @@ namespace all_tests
 			Assert::AreEqual(125, v[1]);
 			Assert::AreEqual(1000, v[2]);
 		}
-		//TEST_METHOD(test_03b)
-		//{
-		//	int x[] = { 3, 5, 10 };
-		//	std::vector<int> y = { 4, 12, 10 };
-		//	std::vector<double> d;
-
-		//	// TODO: calculate distances from origin (from x and y collections) to new vector
-		//	Assert::AreEqual(3ull, d.size());
-		//	Assert::AreEqual(5., d[0]);
-		//	Assert::AreEqual(13., d[1]);
-		//	Assert::AreEqual(sqrt(200), d[2]);
-		//}
+		TEST_METHOD(test_03b)
+		{
+			int x[] = { 3, 5, 10 };
+			std::vector<int> y = { 4, 12, 10 };
+			std::vector<double> d;
+			std::transform(y.begin(), y.end(), x, std::back_inserter(d),
+				[](unsigned int x, unsigned int y) {return hypot(x, y); });
+			Assert::AreEqual(3ull, d.size());
+			Assert::AreEqual(5., d[0]);
+			Assert::AreEqual(13., d[1]);
+			Assert::AreEqual(sqrt(200), d[2]);
+		}
 		//TEST_METHOD(test_04a)
 		//{
 		//	std::stringstream ss("1.5 2.5 3.5");
