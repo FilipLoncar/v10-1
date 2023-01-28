@@ -146,16 +146,18 @@ namespace all_tests
 		//{
 		//	std::string s("neisporuka");
 		//	// TODO: change every vowel with x 
+		//	std::vector<char> v{ 'a','e','i','o','u'};
+		//	std::replace_if(v.begin(), v.end(), [v](char& c) {if(std::find(v.begin(),v.end(),c) !=v.end()) return true; }, 'x');
 		//	Assert::AreEqual("nxxspxrxkx", s.c_str());
 		//}
-		//TEST_METHOD(test_08a)
-		//{
-		//	std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
-		//	// TODO: delete all invalid values (1e10)
-		//	Assert::AreEqual(5ull, v.size());
-		//	Assert::AreEqual(8., v[0]);
-		//	Assert::AreEqual(99., v[4]);
-		//}
+		TEST_METHOD(test_08a)
+		{
+			std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
+			v.erase(std::remove(v.begin(), v.end(),1e10) ,v.end());
+			Assert::AreEqual(5ull, v.size());
+			Assert::AreEqual(8., v[0]);
+			Assert::AreEqual(99., v[4]);
+		}
 
 		//TEST_METHOD(test_08b)
 		//{
