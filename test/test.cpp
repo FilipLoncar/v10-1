@@ -79,12 +79,13 @@ namespace all_tests
 			auto res = std::accumulate(input, std::istream_iterator<double>(), 0.0); 
 			Assert::AreEqual(7.5, res);
 		}
-		//TEST_METHOD(test_04b)
-		//{
-		//	std::vector<std::string> v{ "V", "S", "I", "T", "E", "!" };
-		//	auto res = // TODO: concatenated string with additional prefix 
-		//	Assert::AreEqual("GO VSITE!", res.c_str());
-		//}
+		TEST_METHOD(test_04b)
+		{
+			std::vector<std::string> v{ "V", "S", "I", "T", "E", "!" };
+			std::string s{ "GO " };
+			auto res = std::accumulate(v.begin(), v.end(), s);
+			Assert::AreEqual("GO VSITE!", res.c_str());
+		}
 		//TEST_METHOD(test_04c)
 		//{
 		//	struct person { std::string name; int age; };
