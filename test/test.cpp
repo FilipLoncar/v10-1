@@ -14,6 +14,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace all_tests
 {
+
 	TEST_CLASS(test_v10)
 	{
 	public:
@@ -115,20 +116,32 @@ namespace all_tests
 			Assert::AreEqual(2ll, number_in_first_quadrant);
 		}
 
-		//TEST_METHOD(test_06)
-		//{
-		//	std::vector<int> v{ 33, 16, 24, 41, 25, 19, 9 };
-		//	auto first_prime = // TODO: 
-		//	Assert::AreEqual(41, first_prime);
-		//}
-		//TEST_METHOD(test_07a)
-		//{
-		//	std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
-		//	// TODO: change every invalid value (1e10) with -1 
-		//	Assert::AreEqual(-1., v[0]);
-		//	Assert::AreEqual(-1., v[4]);
-		//	Assert::AreEqual(-1., v[6]);
-		//}
+
+
+		/*TEST_METHOD(test_06)
+		{
+			bool prime(int n){
+				int m = n / 2;
+
+				for (auto i = 2; i < m; ++i) {
+					if (n % i == 0)
+						return false;
+				}
+				return true;
+			}
+
+			std::vector<int> v{ 33, 16, 24, 41, 25, 19, 9 };
+			auto first_prime = std::find_if(v.begin(), v.end(), prime);
+			Assert::AreEqual(41, first_prime);
+		}*/
+		TEST_METHOD(test_07a)
+		{
+			std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
+			std::replace(v.begin(), v.end(), 1e10, -1.0);
+			Assert::AreEqual(-1., v[0]);
+			Assert::AreEqual(-1., v[4]);
+			Assert::AreEqual(-1., v[6]);
+		}
 		//TEST_METHOD(test_07b)
 		//{
 		//	std::string s("neisporuka");
