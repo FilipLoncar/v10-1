@@ -86,13 +86,13 @@ namespace all_tests
 			auto res = std::accumulate(v.begin(), v.end(), s);
 			Assert::AreEqual("GO VSITE!", res.c_str());
 		}
-		//TEST_METHOD(test_04c)
-		//{
-		//	struct person { std::string name; int age; };
-		//	std::vector<person> v{ {"Pero", 33}, {"Iva", 25} };
-		//	auto total_age = // TODO: sum of all ages
-		//	Assert::AreEqual(58, total_age);
-		//}
+		TEST_METHOD(test_04c)
+		{
+			struct person { std::string name; int age; };
+			std::vector<person> v{ {"Pero", 33}, {"Iva", 25} };
+			auto total_age = std::accumulate(v.begin(), v.end(), 0, [](int all_ages, const person& p) {return all_ages += p.age; });
+			Assert::AreEqual(58, total_age);
+		}
 
 		//TEST_METHOD(test_05a)
 		//{
