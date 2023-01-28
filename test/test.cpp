@@ -165,16 +165,20 @@ namespace all_tests
 		//	// TODO: delete all vowels 
 		//	Assert::AreEqual("plrtn", s.c_str());
 		//}
-		//TEST_METHOD(test_09)
-		//{
-		//	struct exam { std::string name; int points, grade; };
-		//	std::vector<exam> v{ {"Pero", 55, 2}, {"Iva", 93, 5}, {"Marko", 89, 5} };
-		//	// TODO: sort vector by grade, then by points
-		//	Assert::AreEqual("Iva", v[0].name.c_str());
-		//	Assert::AreEqual("Marko", v[1].name.c_str());
-		//	Assert::AreEqual("Pero", v[2].name.c_str());
+		TEST_METHOD(test_09)
+		{
+			struct exam { std::string name; int points, grade; };
+			std::vector<exam> v{ {"Pero", 55, 2}, {"Iva", 93, 5}, {"Marko", 89, 5} };
+			// TODO: sort vector by grade, then by points
+			std::sort(v.begin(), v.end(), [](const exam& e1, const exam& e2) {
+				if (e1.grade == e2.grade) { return (e1.points > e2.points); }
+				else { return (e1.grade > e2.grade); }
+				});
+			Assert::AreEqual("Iva", v[0].name.c_str());
+			Assert::AreEqual("Marko", v[1].name.c_str());
+			Assert::AreEqual("Pero", v[2].name.c_str());
 
-		//}
+		}
 		//TEST_METHOD(test_10)
 		//{
 		//	std::vector<double> v(2e7);
