@@ -33,23 +33,24 @@ namespace all_tests
 		//{
 		//	std::vector<int> v(10);
 		//	// TODO: fill vector with incremental values
-		//	fill_n(v.begin(), v.end(), );
+		//	//fill_n(v.begin(), v.end(), );
+		//	std::generate(v.begin(), v.end(), [] {static int i = 0; return ++i; });
 		//	Assert::AreEqual(10ull, v.size());
 		//	Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
 		//	Assert::AreEqual(1, v[0]);
 		//	Assert::AreEqual(10, v[9]);
 		//}
-		//TEST_METHOD(test_02b)
-		//{
-		//	// generate
-		//	std::vector<int> v(10);
-		//	// TODO: fill vector with incremental values (by 2)
-
-		//	Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
-		//	Assert::IsTrue(v.cend() == std::adjacent_find(v.cbegin(), v.cend(), [](int a, int b) { return b - a != 2;  }));
-		//	Assert::AreEqual(1, v[0]);
-		//	Assert::AreEqual(19, v[9]);
-		//}
+		TEST_METHOD(test_02b)
+		{
+			// generate
+			std::vector<int> v(10);
+			// TODO: fill vector with incremental values (by 2)
+			std::generate(v.begin(), v.end(), [] {static int i = -1; return i += 2; });
+			Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
+			Assert::IsTrue(v.cend() == std::adjacent_find(v.cbegin(), v.cend(), [](int a, int b) { return b - a != 2;  }));
+			Assert::AreEqual(1, v[0]);
+			Assert::AreEqual(19, v[9]);
+		}
 
 		//TEST_METHOD(test_03a)
 		//{
