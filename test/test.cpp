@@ -94,12 +94,12 @@ namespace all_tests
 			Assert::AreEqual(58, total_age);
 		}
 
-		//TEST_METHOD(test_05a)
-		//{
-		//	std::vector<int> v{ -5, 8, 11, 0, -9, 77, -4 };
-		//	auto number_of_negative = // TODO: 
-		//	Assert::AreEqual(3ll, number_of_negative);
-		//}
+		TEST_METHOD(test_05a)
+		{
+			std::vector<int> v{ -5, 8, 11, 0, -9, 77, -4 };
+			auto number_of_negative = std::count_if(v.begin(), v.end(), [](int i) {return i < 0; });
+			Assert::AreEqual(3ll, number_of_negative);
+		}
 		//TEST_METHOD(test_05b)
 		//{
 		//	std::vector<double> v{ 1.5, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
