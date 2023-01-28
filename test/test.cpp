@@ -169,7 +169,6 @@ namespace all_tests
 		{
 			struct exam { std::string name; int points, grade; };
 			std::vector<exam> v{ {"Pero", 55, 2}, {"Iva", 93, 5}, {"Marko", 89, 5} };
-			// TODO: sort vector by grade, then by points
 			std::sort(v.begin(), v.end(), [](const exam& e1, const exam& e2) {
 				if (e1.grade == e2.grade) { return (e1.points > e2.points); }
 				else { return (e1.grade > e2.grade); }
@@ -179,22 +178,22 @@ namespace all_tests
 			Assert::AreEqual("Pero", v[2].name.c_str());
 
 		}
-		//TEST_METHOD(test_10)
-		//{
-		//	std::vector<double> v(2e7);
-		//	// half of the values less than 1000
-		//	std::generate(v.begin(), v.begin() + v.size() / 2, []() { return rand() % 1000; });
-		//	// other half of the values greater than 1000
-		//	std::generate(v.begin() + v.size() / 2, v.end(), []() { return 1001 + rand() % 1000; });
-		//	v.push_back(1000); // to be median
+		TEST_METHOD(test_10)
+		{
+			std::vector<double> v(2e7);
+			// half of the values less than 1000
+			std::generate(v.begin(), v.begin() + v.size() / 2, []() { return rand() % 1000; });
+			// other half of the values greater than 1000
+			std::generate(v.begin() + v.size() / 2, v.end(), []() { return 1001 + rand() % 1000; });
+			v.push_back(1000); // to be median
 
-		//	std::random_device rd;
-		//	std::mt19937 g(rd());
-		//	std::shuffle(v.begin(), v.end(), g);
+			std::random_device rd;
+			std::mt19937 g(rd());
+			std::shuffle(v.begin(), v.end(), g);
 
-		//	// TODO: put median value in the middle of vector. fast.
-		//	Assert::AreEqual(1000., v[v.size() / 2]); // median value
-		//}
+			std::nth_element(v.begin(), v.begin() + v.size() / 2, v.end());
+			Assert::AreEqual(1000., v[v.size() / 2]); // median value
+		}
 		//TEST_METHOD(test_11)
 		//{
 		//	std::vector<double> v{ 11, 0.5, -97.23, -23.11, 48.78, 22.96, -77 };
