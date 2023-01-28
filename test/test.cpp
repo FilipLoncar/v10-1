@@ -194,14 +194,14 @@ namespace all_tests
 			std::nth_element(v.begin(), v.begin() + v.size() / 2, v.end());
 			Assert::AreEqual(1000., v[v.size() / 2]); // median value
 		}
-		//TEST_METHOD(test_11)
-		//{
-		//	std::vector<double> v{ 11, 0.5, -97.23, -23.11, 48.78, 22.96, -77 };
-		//	auto smallest_value = // TODO: 
-		//	Assert::AreEqual(-97.23, smallest_value);
-		//	auto largest_value = // TODO: 
-		//	Assert::AreEqual(48.78, largest_value);
-		//}
+		TEST_METHOD(test_11)
+		{
+			std::vector<double> v{ 11, 0.5, -97.23, -23.11, 48.78, 22.96, -77 };
+			auto smallest_value = *std::min_element(v.begin(), v.end());
+			Assert::AreEqual(-97.23, smallest_value);
+			auto largest_value = *std::max_element(v.begin(), v.end());
+			Assert::AreEqual(48.78, largest_value);
+		}
 		//TEST_METHOD(test_12)
 		//{
 		//	std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
