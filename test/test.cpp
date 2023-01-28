@@ -72,12 +72,13 @@ namespace all_tests
 			Assert::AreEqual(13., d[1]);
 			Assert::AreEqual(sqrt(200), d[2]);
 		}
-		//TEST_METHOD(test_04a)
-		//{
-		//	std::stringstream ss("1.5 2.5 3.5");
-		//	auto res = // TODO: sum of all values in input stream
-		//	Assert::AreEqual(7.5, res);
-		//}
+		TEST_METHOD(test_04a)
+		{
+			std::stringstream ss("1.5 2.5 3.5");
+			std::istream_iterator<double> input(ss);
+			auto res = std::accumulate(input, std::istream_iterator<double>(), 0.0); 
+			Assert::AreEqual(7.5, res);
+		}
 		//TEST_METHOD(test_04b)
 		//{
 		//	std::vector<std::string> v{ "V", "S", "I", "T", "E", "!" };
