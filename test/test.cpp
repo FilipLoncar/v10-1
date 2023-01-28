@@ -100,12 +100,12 @@ namespace all_tests
 			auto number_of_negative = std::count_if(v.begin(), v.end(), [](int i) {return i < 0; });
 			Assert::AreEqual(3ll, number_of_negative);
 		}
-		//TEST_METHOD(test_05b)
-		//{
-		//	std::vector<double> v{ 1.5, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
-		//	auto number_of_invalid = // TODO: 
-		//	Assert::AreEqual(3ll, number_of_invalid);
-		//}
+		TEST_METHOD(test_05b)
+		{
+			std::vector<double> v{ 1.5, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
+			auto number_of_invalid = std::count(v.begin(), v.end(), 1e10);
+			Assert::AreEqual(3ll, number_of_invalid);
+		}
 		//TEST_METHOD(test_05c)
 		//{
 		//	struct point { int x, y; };
