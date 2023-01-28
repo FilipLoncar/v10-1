@@ -29,6 +29,7 @@ namespace all_tests
 			Assert::AreEqual(22, v[2]);
 
 		}
+
 		//TEST_METHOD(test_02a)
 		//{
 		//	std::vector<int> v(10);
@@ -42,9 +43,7 @@ namespace all_tests
 		//}
 		TEST_METHOD(test_02b)
 		{
-			// generate
 			std::vector<int> v(10);
-			// TODO: fill vector with incremental values (by 2)
 			std::generate(v.begin(), v.end(), [] {static int i = -1; return i += 2; });
 			Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
 			Assert::IsTrue(v.cend() == std::adjacent_find(v.cbegin(), v.cend(), [](int a, int b) { return b - a != 2;  }));
@@ -52,15 +51,15 @@ namespace all_tests
 			Assert::AreEqual(19, v[9]);
 		}
 
-		//TEST_METHOD(test_03a)
-		//{
-		//	std::vector<int> v = { 1, 5, 10 };
-		//	// TODO: change all values in a vector
-		//	Assert::AreEqual(3ull, v.size());
-		//	Assert::AreEqual(1, v[0]);
-		//	Assert::AreEqual(125, v[1]);
-		//	Assert::AreEqual(1000, v[2]);
-		//}
+		TEST_METHOD(test_03a)
+		{
+			std::vector<int> v = { 1, 5, 10 };
+			std::transform(v.begin(), v.end(),v.begin(), [](int n) {return pow(n, 3); });
+			Assert::AreEqual(3ull, v.size());
+			Assert::AreEqual(1, v[0]);
+			Assert::AreEqual(125, v[1]);
+			Assert::AreEqual(1000, v[2]);
+		}
 		//TEST_METHOD(test_03b)
 		//{
 		//	int x[] = { 3, 5, 10 };
