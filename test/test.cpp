@@ -106,13 +106,14 @@ namespace all_tests
 			auto number_of_invalid = std::count(v.begin(), v.end(), 1e10);
 			Assert::AreEqual(3ll, number_of_invalid);
 		}
-		//TEST_METHOD(test_05c)
-		//{
-		//	struct point { int x, y; };
-		//	std::vector<point> v{ {1,1}, {-5,3}, {2,2}, {-7,-6}, {9,-4} };
-		//	auto number_in_first_quadrant = // TODO: 
-		//	Assert::AreEqual(2ll, number_in_first_quadrant);
-		//}
+		TEST_METHOD(test_05c)
+		{
+			struct point { int x, y; };
+			std::vector<point> v{ {1,1}, {-5,3}, {2,2}, {-7,-6}, {9,-4} };
+			auto number_in_first_quadrant = std::count_if(v.begin(), v.end(), [](const point& p) {
+				return (p.x > 0 && p.y > 0); });
+			Assert::AreEqual(2ll, number_in_first_quadrant);
+		}
 
 		//TEST_METHOD(test_06)
 		//{
