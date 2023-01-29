@@ -15,6 +15,16 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace all_tests
 {
 
+	bool prime(int n) {
+		int m = n / 2;
+
+		for (auto i = 2; i < m; ++i) {
+			if (n % i == 0)
+				return false;
+		}
+		return true;
+	}
+
 	TEST_CLASS(test_v10)
 	{
 	public:
@@ -34,7 +44,6 @@ namespace all_tests
 		TEST_METHOD(test_02a)
 		{
 			std::vector<int> v(10);
-			// TODO: fill vector with incremental values
 			//fill_n(v.begin(), v.end(), );
 			std::iota(v.begin(), v.end(), 1);
 			std::generate(v.begin(), v.end(), [] {static int i = 0; return ++i; });
@@ -119,22 +128,13 @@ namespace all_tests
 
 
 
-		/*TEST_METHOD(test_06)
+		TEST_METHOD(test_06)
 		{
-			bool prime(int n){
-				int m = n / 2;
-
-				for (auto i = 2; i < m; ++i) {
-					if (n % i == 0)
-						return false;
-				}
-				return true;
-			}
 
 			std::vector<int> v{ 33, 16, 24, 41, 25, 19, 9 };
-			auto first_prime = std::find_if(v.begin(), v.end(), prime);
+			auto first_prime = *std::find_if(v.begin(), v.end(), prime);
 			Assert::AreEqual(41, first_prime);
-		}*/
+		}
 		TEST_METHOD(test_07a)
 		{
 			std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
@@ -143,14 +143,14 @@ namespace all_tests
 			Assert::AreEqual(-1., v[4]);
 			Assert::AreEqual(-1., v[6]);
 		}
-		//TEST_METHOD(test_07b)
-		//{
-		//	std::string s("neisporuka");
-		//	// TODO: change every vowel with x 
-		//	std::vector<char> v{ 'a','e','i','o','u'};
-		//	std::replace_if(v.begin(), v.end(), [v](char& c) {if(std::find(v.begin(),v.end(),c) !=v.end()) return true; }, 'x');
-		//	Assert::AreEqual("nxxspxrxkx", s.c_str());
-		//}
+		TEST_METHOD(test_07b)
+		{
+			std::string s("neisporuka");
+			// TODO: change every vowel with x 
+			std::vector<char> v{ 'a','e','i','o','u'};
+			std::replace_if(s.begin(), s.end(), [v](char& c) {if(std::find(v.begin(),v.end(),c) !=v.end()) return true; }, 'x');
+			Assert::AreEqual("nxxspxrxkx", s.c_str());
+		}
 		TEST_METHOD(test_08a)
 		{
 			std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
