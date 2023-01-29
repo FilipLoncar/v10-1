@@ -146,8 +146,11 @@ namespace all_tests
 		TEST_METHOD(test_07b)
 		{
 			std::string s("neisporuka");
-			std::vector<char> v{ 'a','e','i','o','u','A','E','I','O','U'};
-			std::replace_if(s.begin(), s.end(), [v](char& c) {if(std::find(v.begin(), v.end(), c) != v.end()) return true; }, 'x');
+			// local test passed, but does not pass on git
+			//std::vector<char> v{ 'a','e','i','o','u','A','E','I','O','U'};
+			//std::replace_if(s.begin(), s.end(), [v](char& c) {if(std::find(v.begin(), v.end(), c) != v.end()) return true; }, 'x');
+			
+			std::replace_if(s.begin(), s.end(), [](char& c) {return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'; }, 'x');
 			Assert::AreEqual("nxxspxrxkx", s.c_str());
 		}
 
@@ -162,9 +165,12 @@ namespace all_tests
 		TEST_METHOD(test_08b)
 		{
 			std::string s("poliuretan");
-			std::vector<char> v{ 'a','e','i','o','u','A','E','I','O','U'};
-			auto inex = std::remove_if(s.begin(), s.end(), [v](char c) {if (std::find(v.begin(), v.end(), c) != v.end()) return true;});
-			s.erase(inex, s.end());
+			// local test passed, but does not pass on git
+			//std::vector<char> v{ 'a','e','i','o','u','A','E','I','O','U'};
+			//auto inex = std::remove_if(s.begin(), s.end(), [v](char c) {if (std::find(v.begin(), v.end(), c) != v.end()) return true;});
+			//s.erase(inex, s.end());
+
+			
 			Assert::AreEqual("plrtn", s.c_str());
 		}
 
