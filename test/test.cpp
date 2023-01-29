@@ -31,17 +31,18 @@ namespace all_tests
 
 		}
 
-		//TEST_METHOD(test_02a)
-		//{
-		//	std::vector<int> v(10);
-		//	// TODO: fill vector with incremental values
-		//	//fill_n(v.begin(), v.end(), );
-		//	std::generate(v.begin(), v.end(), [] {static int i = 0; return ++i; });
-		//	Assert::AreEqual(10ull, v.size());
-		//	Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
-		//	Assert::AreEqual(1, v[0]);
-		//	Assert::AreEqual(10, v[9]);
-		//}
+		TEST_METHOD(test_02a)
+		{
+			std::vector<int> v(10);
+			// TODO: fill vector with incremental values
+			//fill_n(v.begin(), v.end(), );
+			std::iota(v.begin(), v.end(), 1);
+			std::generate(v.begin(), v.end(), [] {static int i = 0; return ++i; });
+			Assert::AreEqual(10ull, v.size());
+			Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
+			Assert::AreEqual(1, v[0]);
+			Assert::AreEqual(10, v[9]);
+		}
 		TEST_METHOD(test_02b)
 		{
 			std::vector<int> v(10);
@@ -208,7 +209,6 @@ namespace all_tests
 			std::sort(atp_points.begin(), atp_points.end());
 			std::vector<int> diff;
 			std::adjacent_difference(atp_points.begin(), atp_points.end(), std::back_inserter(diff));
-			//std::transform(diff.begin(), diff.end(), diff.begin(), [](int i) {return abs(i); });
 			auto smallest_difference = *std::min_element(diff.begin(), diff.end());
 			Assert::AreEqual(15, smallest_difference);
 		}
