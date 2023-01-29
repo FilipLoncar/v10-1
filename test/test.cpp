@@ -170,7 +170,7 @@ namespace all_tests
 			//auto inex = std::remove_if(s.begin(), s.end(), [v](char c) {if (std::find(v.begin(), v.end(), c) != v.end()) return true;});
 			//s.erase(inex, s.end());
 
-			
+			s.erase(std::remove_if(s.begin(), s.end(), [](char& c) {return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'; }),s.end());
 			Assert::AreEqual("plrtn", s.c_str());
 		}
 
