@@ -44,9 +44,7 @@ namespace all_tests
 		TEST_METHOD(test_02a)
 		{
 			std::vector<int> v(10);
-			//fill_n(v.begin(), v.end(), );
 			std::iota(v.begin(), v.end(), 1);
-			std::generate(v.begin(), v.end(), [] {static int i = 0; return ++i; });
 			Assert::AreEqual(10ull, v.size());
 			Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
 			Assert::AreEqual(1, v[0]);
