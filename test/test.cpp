@@ -202,12 +202,15 @@ namespace all_tests
 			auto largest_value = *std::max_element(v.begin(), v.end());
 			Assert::AreEqual(48.78, largest_value);
 		}
-		//TEST_METHOD(test_12)
-		//{
-		//	std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
-		//	// the most interesting match is the one with the smallest difference
-		//	auto smallest_difference = // TODO: 
-		//	Assert::AreEqual(15, smallest_difference);
-		//}
+		TEST_METHOD(test_12)
+		{
+			std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
+			std::sort(atp_points.begin(), atp_points.end());
+			std::vector<int> diff;
+			std::adjacent_difference(atp_points.begin(), atp_points.end(), std::back_inserter(diff));
+			//std::transform(diff.begin(), diff.end(), diff.begin(), [](int i) {return abs(i); });
+			auto smallest_difference = *std::min_element(diff.begin(), diff.end());
+			Assert::AreEqual(15, smallest_difference);
+		}
 	};
 }
