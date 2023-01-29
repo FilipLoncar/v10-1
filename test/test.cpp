@@ -53,7 +53,7 @@ namespace all_tests
 		TEST_METHOD(test_02b)
 		{
 			std::vector<int> v(10);
-			std::generate(v.begin(), v.end(), [] {static int i = -1; return i += 2; });
+			std::generate(v.begin(), v.end(), [i=-1]()mutable {return i += 2; });
 			Assert::IsTrue(std::is_sorted(v.cbegin(), v.cend()));
 			Assert::IsTrue(v.cend() == std::adjacent_find(v.cbegin(), v.cend(), [](int a, int b) { return b - a != 2;  }));
 			Assert::AreEqual(1, v[0]);
