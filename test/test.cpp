@@ -205,11 +205,17 @@ namespace all_tests
 
 		TEST_METHOD(test_12)
 		{
-			std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
+			/*std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
 			std::sort(atp_points.begin(), atp_points.end());
 			std::vector<int> diff;
 			std::adjacent_difference(atp_points.begin(), atp_points.end(), std::back_inserter(diff));
-			auto smallest_difference = *std::min_element(diff.begin(), diff.end());
+			auto smallest_difference = *std::min_element(diff.begin()+1, diff.end()-1);
+			Assert::AreEqual(15, smallest_difference);*/
+
+			std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
+			std::sort(atp_points.begin(), atp_points.end());
+			std::adjacent_difference(atp_points.begin(), atp_points.end(), atp_points.begin());
+			auto smallest_difference = *std::min_element(atp_points.begin() + 1, atp_points.end());
 			Assert::AreEqual(15, smallest_difference);
 		}
 	};
