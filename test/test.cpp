@@ -83,6 +83,7 @@ namespace all_tests
 			Assert::AreEqual(13., d[1]);
 			Assert::AreEqual(sqrt(200), d[2]);
 		}
+
 		TEST_METHOD(test_04a)
 		{
 			std::stringstream ss("1.5 2.5 3.5");
@@ -126,8 +127,6 @@ namespace all_tests
 			Assert::AreEqual(2ll, number_in_first_quadrant);
 		}
 
-
-
 		TEST_METHOD(test_06)
 		{
 
@@ -135,6 +134,7 @@ namespace all_tests
 			auto first_prime = *std::find_if(v.begin(), v.end(), prime);
 			Assert::AreEqual(41, first_prime);
 		}
+
 		TEST_METHOD(test_07a)
 		{
 			std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
@@ -146,11 +146,11 @@ namespace all_tests
 		TEST_METHOD(test_07b)
 		{
 			std::string s("neisporuka");
-			// TODO: change every vowel with x 
-			std::vector<char> v{ 'a','e','i','o','u'};
-			std::replace_if(s.begin(), s.end(), [v](char& c) {if(std::find(v.begin(),v.end(),c) !=v.end()) return true; }, 'x');
+			std::vector<char> v{ 'a','e','i','o','u','A','E','I','O','U'};
+			std::replace_if(s.begin(), s.end(), [v](char& c) {if(std::find(v.begin(), v.end(), c) != v.end()) return true; }, 'x');
 			Assert::AreEqual("nxxspxrxkx", s.c_str());
 		}
+
 		TEST_METHOD(test_08a)
 		{
 			std::vector<double> v{ 1e10, 8, -11.23, 0, 1e10, 1e10, 1e10, 0, 99 };
@@ -159,13 +159,15 @@ namespace all_tests
 			Assert::AreEqual(8., v[0]);
 			Assert::AreEqual(99., v[4]);
 		}
+		TEST_METHOD(test_08b)
+		{
+			std::string s("poliuretan");
+			std::vector<char> v{ 'a','e','i','o','u','A','E','I','O','U'};
+			auto inex = std::remove_if(s.begin(), s.end(), [v](char c) {if (std::find(v.begin(), v.end(), c) != v.end()) return true;});
+			s.erase(inex, s.end());
+			Assert::AreEqual("plrtn", s.c_str());
+		}
 
-		//TEST_METHOD(test_08b)
-		//{
-		//	std::string s("poliuretan");
-		//	// TODO: delete all vowels 
-		//	Assert::AreEqual("plrtn", s.c_str());
-		//}
 		TEST_METHOD(test_09)
 		{
 			struct exam { std::string name; int points, grade; };
@@ -179,6 +181,7 @@ namespace all_tests
 			Assert::AreEqual("Pero", v[2].name.c_str());
 
 		}
+
 		TEST_METHOD(test_10)
 		{
 			std::vector<double> v(2e7);
@@ -195,6 +198,7 @@ namespace all_tests
 			std::nth_element(v.begin(), v.begin() + v.size() / 2, v.end());
 			Assert::AreEqual(1000., v[v.size() / 2]); // median value
 		}
+
 		TEST_METHOD(test_11)
 		{
 			std::vector<double> v{ 11, 0.5, -97.23, -23.11, 48.78, 22.96, -77 };
@@ -203,6 +207,7 @@ namespace all_tests
 			auto largest_value = *std::max_element(v.begin(), v.end());
 			Assert::AreEqual(48.78, largest_value);
 		}
+
 		TEST_METHOD(test_12)
 		{
 			std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
